@@ -7,8 +7,9 @@ class Solution {
             if(price < minPrice){
                 minPrice = price;
             }
-            else{
-                 maxProfit = Math.max(maxProfit, price-minPrice);
+            
+            if(price-minPrice>maxProfit){
+                maxProfit = price - minPrice;
             }
         }
 
