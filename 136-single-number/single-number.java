@@ -1,11 +1,14 @@
 class Solution {
     public int singleNumber(int[] nums) {
-        int res = nums[0];
-        int i=1;
-        while(i<nums.length){
-            res = res ^ nums[i];
-            i++;
+        if(nums.length == 1) return nums[0];
+        
+        Arrays.sort(nums);
+
+        for(int i=0; i<nums.length-1; i++){
+            if(nums[i]==nums[i+1]) i++;
+            else return nums[i];
         }
-        return res;
+
+        return nums[nums.length-1];
     }
 }
