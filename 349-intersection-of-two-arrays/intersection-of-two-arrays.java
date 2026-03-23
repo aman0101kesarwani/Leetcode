@@ -12,18 +12,27 @@ class Solution {
         }
 
         //intersection
-
-        int[] res = new int[set1.size()];  // as res array will contains value less or equal to any of s1 or s2 which is smaller
-
         int k=0;
+        int[] res;
 
-        for(int num : set1){
-            if(set2.contains(num)){
-                res[k]=num;
-                k++;
+        if(set1.size()>set2.size()){
+            res = new int[set2.size()];  // as res array will contains value less or equal to any of s1 or s2 which is smaller
+            for(int num : set2){
+                if(set1.contains(num)){
+                    res[k]=num;
+                    k++;
+                }
             }
         }
-        
+        else{
+            res = new int[set1.size()];  // as res array will contains value less or equal to any of s1 or s2 which is smaller
+            for(int num : set1){
+                if(set2.contains(num)){
+                    res[k]=num;
+                    k++;
+                }
+            }
+        }
         return Arrays.copyOfRange(res, 0, k);
     }
 }
