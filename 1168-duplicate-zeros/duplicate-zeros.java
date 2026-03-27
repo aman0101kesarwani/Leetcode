@@ -21,7 +21,7 @@ class Solution {
             if(arr[i] == 0){
                 arr[i + possibleZeroDups] = 0;
                 possibleZeroDups--;
-                arr[i + possibleZeroDups] = 0;   // fixed
+                arr[i + possibleZeroDups] = 0;   
             }
             else{
                 arr[i + possibleZeroDups] = arr[i];
