@@ -1,31 +1,23 @@
 class Solution {
     public boolean validMountainArray(int[] arr) {
-        if (arr.length < 3) return false;
+        int n = arr.length;
+        if (n < 3) return false;
 
-        int max = arr[0];
-        int idx = 0;
+        int i = 0;
 
-        // find peak
-        for (int i = 1; i < arr.length; i++) {
-            if (arr[i] > max) {
-                max = arr[i];
-                idx = i;
-            }
+        // go up
+        while (i + 1 < n && arr[i] < arr[i + 1]) {
+            i++;
         }
 
         // peak cannot be first or last
-        if (idx == 0 || idx == arr.length - 1) return false;
+        if (i == 0 || i == n - 1) return false;
 
-        // increasing part
-        for (int i = 0; i < idx; i++) {
-            if (arr[i] >= arr[i + 1]) return false;
+        // go down
+        while (i + 1 < n && arr[i] > arr[i + 1]) {
+            i++;
         }
 
-        // decreasing part
-        for (int i = idx; i < arr.length - 1; i++) {
-            if (arr[i] <= arr[i + 1]) return false;
-        }
-
-        return true;
+        return i == n - 1;
     }
 }
