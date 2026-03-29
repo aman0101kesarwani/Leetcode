@@ -2,20 +2,23 @@ class Solution {
     public int[] sortArrayByParity(int[] nums) {
         
         int n = nums.length;
-        int slow = 0; // position to place next even number
+        
+        int left = 0;
+        int right = n-1;
 
-        for (int fast = 0; fast < n; fast++) {
-
-            // If current element is even
-            if (nums[fast] % 2 == 0) {
-                
-                // Swap with slow pointer
-                int temp = nums[fast];
-                nums[fast] = nums[slow];
-                nums[slow] = temp;
-
-                slow++; // move slow to next position
+        while(left<=right){
+            if(nums[left]%2==1 && nums[right]%2==0){
+                int temp = nums[left];
+                nums[left] = nums[right];
+                nums[right] = temp;
+                left++;
+                right--;
+            }else if(nums[left]%2==0){
+                left++;
+            }else{
+                right--;
             }
+
         }
 
         return nums;
