@@ -8,7 +8,7 @@ class Solution {
             set.add(num);
         }
 
-        List<Integer> list = new LinkedList<>();   //linkedlist , not arraylist
+        List<Integer> list = new ArrayList<>();   //linkedlist , not arraylist
 
         for(int i=1; i<=nums.length; i++){     // < = nums.length , not < nums.length
             if(!set.contains(i)){               // i , not nums[i]
