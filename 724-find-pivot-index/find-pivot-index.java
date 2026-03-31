@@ -1,21 +1,24 @@
 class Solution {
     public int pivotIndex(int[] nums) {
         
-        int y=0;
+        int rightSum = 0;
+
         for(int num : nums){
-            y+=num;
+            rightSum += num;
         }
 
-        int pivot = -1;
-        int x = 0;
-        for(int i=0; i<nums.length; i++){
-            if(2 * x + nums[i] == y){
-                pivot = i;
-                break;
+        int leftSum = 0;
+
+        for(int i = 0; i < nums.length; i++){
+
+            if(leftSum == rightSum - nums[i]){
+                return i;
             }
-            x+=nums[i];
+
+            leftSum += nums[i];   // add current to left
+            rightSum-=nums[i];
         }
 
-        return pivot;
+        return -1;
     }
 }
