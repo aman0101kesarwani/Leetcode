@@ -1,25 +1,24 @@
 class Solution {
     public List<List<Integer>> generate(int numRows) {
         
-        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        List<List<Integer>> result = new ArrayList<>();
 
-        result.add(new ArrayList<Integer>());
-        result.get(0).add(1);   // get subarray of index 0 and add 1 in that
+        for(int i=0; i<numRows; i++){
+            List<Integer> row = new ArrayList<>();
+            long val=1;
 
-        for(int row=1; row<numRows; row++){
-            List<Integer> newRow= new ArrayList<>();  //creating newRow
-
-            newRow.add(1);
-            List<Integer> prevRow = result.get(row-1);  //We are just referencing an existing row, not creating prevRow 
-
-            for(int i=1; i<row; i++){
-                newRow.add(prevRow.get(i) + prevRow.get(i-1));
+            for(int j=0; j<=i; j++){
+                row.add((int)val);
+                val = (val * (i-j)) /(j+1);    // compute next nCr : val = val * (i-j) /(j+1);
             }
 
-            newRow.add(1);
-            result.add(newRow);
+            result.add(row);
+
         }
 
         return result;
+
+
+
     }
 }
