@@ -9,7 +9,7 @@ class Solution {
         for(int right = 0; right < n; right++){
             sum += nums[right];
 
-            while(sum >= target){
+            while(sum >= target){  // we don't need j when we have sum
                 minlen = Math.min(minlen, right - left + 1);
                 sum -= nums[left];
                 left++;
