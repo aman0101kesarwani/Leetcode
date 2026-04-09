@@ -2,15 +2,17 @@ class Solution {
     public int firstUniqChar(String s) {
         //m1 : using freq array: two for each individual , one for storing , second for readind and checking if freq==1
 
-        int freq[] = new int[26];  // 26 as only small/one-type letter;
+        //m2: using map : existance + counting
+
+        HashMap<Character, Integer> map = new HashMap<>();
 
         for(char c : s.toCharArray()){
-            freq[c - 'a']++;
+            map.put(c, map.getOrDefault(c,0)+1);
         }
 
         for(int i=0; i<s.length(); i++){
             char c = s.charAt(i);
-            if(freq[c - 'a'] == 1){
+            if(map.get(c)==1){
                 return i;
             }
         }
