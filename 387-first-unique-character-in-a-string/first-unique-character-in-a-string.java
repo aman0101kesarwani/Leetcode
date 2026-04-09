@@ -1,6 +1,6 @@
 class Solution {
     public int firstUniqChar(String s) {
-        //m1 : usinf freq array: two for each individual , one for storing , second for readind and checking if freq==1
+        //m1 : using freq array: two for each individual , one for storing , second for readind and checking if freq==1
 
         int freq[] = new int[26];  // 26 as only small/one-type letter;
 
