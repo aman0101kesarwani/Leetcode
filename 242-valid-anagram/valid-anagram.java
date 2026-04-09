@@ -1,20 +1,25 @@
 class Solution {
     public boolean isAnagram(String s, String t) {
-        //m1: using freq array
+        //m1: using freq array  (better)
         //m2: using HashMap
 
-        int freq[] = new int[26];
+        if (s.length() != t.length()) return false;
 
-        for(char c: s.toCharArray()){
-            freq[c - 'a']++;
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        // Step 1: Count s
+        for (char c : s.toCharArray()) {
+            map.put(c, map.getOrDefault(c, 0) + 1);
         }
 
-        for(char c : t.toCharArray()){
-            freq[c - 'a']--;
+        // Step 2: Subtract t
+        for (char c : t.toCharArray()) {   // ✅ FIXED
+            map.put(c, map.getOrDefault(c, 0) - 1);
         }
 
-        for(int i=0; i<freq.length; i++){
-            if(freq[i]!=0) return false;
+        // Step 3: Check all zero
+        for (int val : map.values()) {
+            if (val != 0) return false;   // ✅ FIXED
         }
 
         return true;
