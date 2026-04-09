@@ -13,13 +13,13 @@ class Solution {
         }
 
         // Step 2: Subtract t
-        for (char c : t.toCharArray()) {   // ✅ FIXED
+        for (char c : t.toCharArray()) {   
             map.put(c, map.getOrDefault(c, 0) - 1);
         }
 
         // Step 3: Check all zero
         for (int val : map.values()) {
-            if (val != 0) return false;   // ✅ FIXED
+            if (val != 0) return false;   
         }
 
         return true;
