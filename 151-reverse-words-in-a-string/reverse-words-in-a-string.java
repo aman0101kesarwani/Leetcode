@@ -1,22 +1,21 @@
 class Solution {
     public String reverseWords(String s) {
-        StringBuilder result = new StringBuilder();
-        int i = s.length() - 1;
+        //remove extra space
+        String t = s.trim();     // new string to use
 
-        while (i >= 0) {
-            while (i >= 0 && s.charAt(i) == ' ') i--;    // to skip outer spaces
-            if (i < 0) break;
+        String st[] = t.split("\\s+");    // split() : O(n)
 
-            int j = i;
-            while (j >= 0 && s.charAt(j) != ' ') j--;
+        StringBuilder sb = new StringBuilder();
+        int count=0;
 
-            result.append(s.substring(j + 1, i + 1));
-            result.append(" ");
-
-            i = j;
+        for(int i=0; i<st.length; i++){
+            if(!st[i].equals(" ")){
+                sb.insert(0, st[i]);
+                sb.insert(0, ' ');
+            }
         }
 
+        return sb.toString().trim();
 
-        return result.toString().trim();
     }
 }
