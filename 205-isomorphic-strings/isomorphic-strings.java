@@ -1,6 +1,6 @@
 class Solution {
     public boolean isIsomorphic(String s, String t) {
-        
+
         if(s.length() != t.length()) return false;
 
         HashMap<Character, Character> map = new HashMap<>();
@@ -19,7 +19,7 @@ class Solution {
                 if(set.contains(b)){
                     return false;
                 }
-
+                
                 map.put(a, b);
                 set.add(b);
             }
