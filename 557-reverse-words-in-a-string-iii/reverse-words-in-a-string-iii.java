@@ -3,23 +3,26 @@ class Solution {
         StringBuilder word = new StringBuilder();
         StringBuilder result = new StringBuilder();
 
-        int i=0;
-        while(i<s.length()){
-            int j=i;
-            while(j<s.length() && s.charAt(j)!=' '){
-                word.insert(0,s.charAt(j));
+        int i = 0;
+
+        while (i < s.length()) {
+            int j = i;
+
+            // build word normally
+            while (j < s.length() && s.charAt(j) != ' ') {
+                word.append(s.charAt(j));
                 j++;
             }
 
-            word.append(' ');
-            result.append(word);
+            // reverse once (O(k))
+            result.append(word.reverse()).append(' ');
+
+            // clear word
             word.setLength(0);
 
-            i=j+1;
+            i = j + 1;
         }
 
         return result.toString().trim();
-        
-        
     }
 }
