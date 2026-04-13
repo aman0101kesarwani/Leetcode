@@ -1,28 +1,34 @@
 class Solution {
     public String reverseWords(String s) {
-        StringBuilder word = new StringBuilder();
-        StringBuilder result = new StringBuilder();
+        char[] arr = s.toCharArray();
+        int n = arr.length;
 
         int i = 0;
 
-        while (i < s.length()) {
-            int j = i;
+        while (i < n) {
+            int start = i;
 
-            // build word normally
-            while (j < s.length() && s.charAt(j) != ' ') {
-                word.append(s.charAt(j));
-                j++;
+            // find end of word
+            while (i < n && arr[i] != ' ') {
+                i++;
             }
 
-            // reverse once (O(k))
-            result.append(word.reverse()).append(' ');
+            // reverse current word
+            reverse(arr, start, i - 1);
 
-            // clear word
-            word.setLength(0);
-
-            i = j + 1;
+            i++; // skip space
         }
 
-        return result.toString().trim();
+        return new String(arr);
+    }
+
+    private void reverse(char[] arr, int l, int r) {
+        while (l < r) {
+            char temp = arr[l];
+            arr[l] = arr[r];
+            arr[r] = temp;
+            l++;
+            r--;
+        }
     }
 }
