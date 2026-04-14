@@ -3,14 +3,19 @@ class Solution {
         int n = haystack.length();
         int m = needle.length();
 
-        for(int i=0; i<n; i++){
-            if(i+m>n) break;
+        int i = 0;
+        while (i <= n - m) {
+            int j = 0;
 
-            String str = haystack.substring(i, i+m);
-            if(needle.equals(str)){
-                return i;
+            while (j < m && haystack.charAt(i + j) == needle.charAt(j)) {
+                j++;
             }
+
+            if (j == m) return i;
+
+            i++;
         }
+
         return -1;
     }
 }
