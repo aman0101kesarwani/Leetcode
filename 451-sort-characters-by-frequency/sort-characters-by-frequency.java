@@ -1,7 +1,7 @@
 class Solution {
     public String frequencySort(String s) {
-        // m1 : using freq array
-        // m2 : using HashMap
+        // m1 : HashMap and PriorityQueue
+        // m2 : HashMap and bucket array 
 
         // step 1: count freq using map
         HashMap<Character, Integer> map = new HashMap<>();
