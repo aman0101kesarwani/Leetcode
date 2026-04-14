@@ -14,21 +14,19 @@ class Solution {
             }
 
             // reverse current word
-            reverse(arr, start, i - 1);
+            int l = start;
+            int r = i-1;
+            while (l < r) {
+                char temp = arr[l];
+                arr[l] = arr[r];
+                arr[r] = temp;
+                l++;
+                r--;
+            }
 
             i++; // skip space
         }
 
         return new String(arr);
-    }
-
-    private void reverse(char[] arr, int l, int r) {
-        while (l < r) {
-            char temp = arr[l];
-            arr[l] = arr[r];
-            arr[r] = temp;
-            l++;
-            r--;
-        }
     }
 }
