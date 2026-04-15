@@ -1,6 +1,7 @@
 class Solution {
 
     public String longestPalindrome(String s) {
+        // Manacher’s Algorithm -(O(n)) :
 
         if (s == null || s.length() == 0) return "";
 
