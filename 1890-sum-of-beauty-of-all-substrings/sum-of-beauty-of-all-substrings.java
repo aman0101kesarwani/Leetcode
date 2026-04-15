@@ -1,35 +1,35 @@
-class Solution {
+class Solution { 
     public int beautySum(String s) {
 
-        int n = s.length();
-        int total = 0;
+        int ans = 0; // final answer
 
-        // Fix starting point
-        for (int i = 0; i < n; i++) {
+        // Fix starting index of substring
+        for (int i = 0; i < s.length(); i++) {
 
-            int[] freq = new int[26]; // only lowercase letters
+            int[] f = new int[26]; // freq array for current window
 
-            // Expand substring
-            for (int j = i; j < n; j++) {
+            // Expand substring ending at j
+            for (int j = i; j < s.length(); j++) {
 
-                // include character
-                freq[s.charAt(j) - 'a']++;
+                // include current character
+                f[s.charAt(j) - 'a']++;
 
                 int max = 0;
                 int min = Integer.MAX_VALUE;
 
-                // calculate max and min freq
-                for (int f : freq) {
-                    if (f > 0) {
-                        max = Math.max(max, f);
-                        min = Math.min(min, f);
+                // find max and min freq in current substring
+                for (int k = 0; k < 26; k++) {
+                    if (f[k] > 0) { // ignore zero freq
+                        max = Math.max(f[k], max);
+                        min = Math.min(f[k], min);
                     }
                 }
 
-                total += (max - min);
+                // beauty = max - min
+                ans += (max - min);
             }
         }
 
-        return total;
+        return ans;
     }
 }
