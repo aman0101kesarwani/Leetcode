@@ -1,76 +1,122 @@
-class MyLinkedList {
-
-    class ListNode {
+class MyLinkedList{
+    class Node{
         int val;
-        ListNode next;
+        Node next;
 
-        ListNode(int val) {
+        Node(int val){
             this.val = val;
         }
     }
 
-    private ListNode dummy; // dummy node
-    private int size;
 
-    public MyLinkedList() {
-        dummy = new ListNode(0);
-        size = 0;
-    }
+    Node head;
+    Node tail;
+    int size;
 
-    // Get value at index
-    public int get(int index) {
-        if (index < 0 || index >= size) return -1;
+    int get(int index){
+        if(index < 0 || index >= size) return -1;
 
-        ListNode curr = dummy.next;
-        for (int i = 0; i < index; i++) {
-            curr = curr.next;
+        Node temp = head;
+        for(int i = 0; i < index; i++){
+            temp = temp.next;
         }
 
-        return curr.val;
+        return temp.val;
     }
 
-    // Add at head
-    public void addAtHead(int val) {
-        addAtIndex(0, val);
-    }
-
-    // Add at tail
-    public void addAtTail(int val) {
-        addAtIndex(size, val);
-    }
-
-    // Add at index
-    public void addAtIndex(int index, int val) {
-
-        if (index > size) return;
-        if (index < 0) index = 0;
-
-        ListNode prev = dummy;
-
-        // move to node before index
-        for (int i = 0; i < index; i++) {
-            prev = prev.next;
+    void addAtTail(int val){
+        Node temp = new Node(val);
+        if(tail==null){
+            head = tail = temp;
         }
-
-        ListNode node = new ListNode(val);
-
-        node.next = prev.next;
-        prev.next = node;
+        else{
+            tail.next=temp;
+            tail=tail.next;
+        }
 
         size++;
     }
 
-    // Delete at index
-    public void deleteAtIndex(int index) {
-        if (index < 0 || index >= size) return;
+    void addAtHead(int val){
+        Node temp = new Node(val);
+        if(head==null){
+            head=tail=temp;
+        }
+        else{
+            temp.next=head;
+            head=temp;
+        }
 
-        ListNode prev = dummy;
+        size++;
+    }
 
-        for (int i = 0; i < index; i++) {
+    void addAtIndex(int index, int val){
+
+        // invalid index
+        if(index < 0 || index > size) return;
+
+        // insert at head
+        if(index==0){
+            addAtHead(val);
+            return;
+        }
+
+        // insert at tail
+        if(index==size){
+            addAtTail(val);
+            return;
+        }
+
+        Node temp = new Node(val);
+        Node t = head;
+
+        // move to (index - 1) position : iterate a index
+        for(int i=0; i<index-1; i++){    // should go to (index-1)
+            t = t.next;
+        }
+
+        temp.next = t.next;
+        t.next = temp;
+
+        size++;
+    }
+
+
+    void deleteAtIndex(int index){
+
+        // 🔹 invalid index or empty list
+        if(index < 0 || index >= size) return;
+
+        // 🔹 Case 1: delete head
+        if(index == 0){
+            head = head.next;
+
+            // if list becomes empty
+            if(head == null){
+                tail = null;
+            }
+
+            size--;
+            return;
+        }
+
+        // 🔹 Case 2: delete at middle or end
+        Node prev = head;
+
+        // move to (index - 1)
+        for(int i = 0; i < index - 1; i++){
             prev = prev.next;
         }
 
+        // 🔹 if deleting last node → update tail
+        if(prev.next == tail){
+            tail = prev;
+        }
+
+        // 🔹 delete node
         prev.next = prev.next.next;
+
         size--;
     }
+
 }
