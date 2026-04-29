@@ -4,6 +4,7 @@ class Solution {
     public String[] findRelativeRanks(int[] score) {
         int n = score.length;
         String[] result = new String[n];
+        // M2: using Map 
 
         // Step 1: map score → index
         HashMap<Integer, Integer> map = new HashMap<>();
