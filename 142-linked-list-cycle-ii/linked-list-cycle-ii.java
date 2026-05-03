@@ -11,7 +11,7 @@
  */
 public class Solution {
     public ListNode detectCycle(ListNode head) {
-        // M1: using set
+        // M1: using map
         HashMap<ListNode, Integer> map = new HashMap<>();
 
         if(head == null || head.next==null) return null;
