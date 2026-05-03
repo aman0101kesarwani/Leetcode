@@ -11,22 +11,20 @@
  */
 public class Solution {
     public boolean hasCycle(ListNode head) {
-        
-        // floyd hare and tortoise alogrithm
-        if(head == null) return false;
+        // M2 - using set :
+        Set<ListNode> set = new HashSet<>();
 
-        ListNode slow = head;
-        ListNode fast = head.next;
+        ListNode temp = head;
 
-        while(slow!=fast){
-            if(fast == null || fast.next == null){
-                return false;
+        while (temp != null) {
+            if (set.contains(temp)) {
+                return true;
             }
-
-            slow = slow.next;
-            fast = fast.next.next;
+            set.add(temp);
+            temp = temp.next;
         }
 
-        return true;
+
+        return false;
     }
 }
