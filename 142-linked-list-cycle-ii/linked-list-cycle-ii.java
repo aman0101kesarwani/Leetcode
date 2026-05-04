@@ -11,18 +11,30 @@
  */
 public class Solution {
     public ListNode detectCycle(ListNode head) {
-        HashSet<ListNode> set = new HashSet<>();
-        // using HashSet
-        ListNode temp = head;
+        if (head == null || head.next == null) return null;
 
-        while (temp != null) {
-            if (set.contains(temp)) {
-                return temp;   // cycle start
-            }
-            set.add(temp);
-            temp = temp.next;
+        ListNode slow = head, fast = head;
+
+        // Step 1: detect meeting point
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) break;
         }
 
-        return null;
+        // no cycle
+        if (fast == null || fast.next == null) return null;
+
+        // Step 2: find cycle start
+        ListNode ptr1 = head;
+        ListNode ptr2 = slow;
+
+        while (ptr1 != ptr2) {
+            ptr1 = ptr1.next;
+            ptr2 = ptr2.next;
+        }
+
+        return ptr1;
     }
 }
