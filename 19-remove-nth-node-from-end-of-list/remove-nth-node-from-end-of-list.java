@@ -8,37 +8,37 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
+
+
+//  dummy--->1--->2--->3--->4--->5--->6--->7 : target = 5 , as n=3,: using gap instead of length : problem done in one phase 
+//           0    1    2    3    4    5    6
+//           i
+//   slow                 fast
+//                        slow            fast  
+
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        ListNode temp = head;
         
-        if (temp == null) return temp;
+        // creating dummy/psedo/sentinel head for edge cases
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
 
-        // Step 1: find length
-        int len = 0;
-        while (temp != null) {
-            len++;
-            temp = temp.next;
+        ListNode slow=dummy, fast=dummy;
+
+        // moving fast to the node before target
+        for(int i=0; i<=n; i++){
+            fast=fast.next;
         }
 
-        // Step 2: if deleting head
-        if (len == n) {
-            return head.next;
+        // move both pointer together : (we are making the distance b/w them = n)
+        while(fast!=null){
+            slow = slow.next;
+            fast = fast.next;
         }
 
-        // Step 3: go to node before target
-        temp = head;
-        int size = 0;
+        // remove node
+        slow.next = slow.next.next;
 
-        while (temp != null) {
-            if (size == len - n - 1){
-                temp.next = temp.next.next; 
-                break;
-            }
-            temp = temp.next;
-            size++;
-        }
-
-        return head;
+        return dummy.next;   // edge case covered
     }
 }
