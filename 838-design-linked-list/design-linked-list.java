@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 class MyLinkedList{
     class Node{
         int val;
@@ -13,38 +20,43 @@ class MyLinkedList{
     Node tail;
     int size;
 
+
     int get(int index){
-        if(index < 0 || index >= size) return -1;
+        if(index<0 || index>=size) return -1;
 
         Node temp = head;
-        for(int i = 0; i < index; i++){
+        for(int i=0; i<index; i++){
             temp = temp.next;
         }
-
         return temp.val;
     }
 
+
     void addAtTail(int val){
         Node temp = new Node(val);
-        if(tail==null){
+
+        // empty list case
+        if(tail == null){
             head = tail = temp;
         }
         else{
-            tail.next=temp;
-            tail=tail.next;
+            tail.next = temp;
+            tail = tail.next;;
         }
 
         size++;
     }
 
+
     void addAtHead(int val){
         Node temp = new Node(val);
-        if(head==null){
-            head=tail=temp;
+
+        if(head == null){
+            head = tail = temp;
         }
         else{
-            temp.next=head;
-            head=temp;
+            temp.next = head;
+            head = temp;
         }
 
         size++;
@@ -118,5 +130,6 @@ class MyLinkedList{
 
         size--;
     }
-
+    
 }
+
