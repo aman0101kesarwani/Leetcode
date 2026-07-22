@@ -1,35 +1,27 @@
+import java.util.*;
+
 class Solution {
     public String frequencySort(String s) {
-        // m1 : HashMap and PriorityQueue
-        // m2 : HashMap and bucket array 
-
-        // step 1: count freq using map
+        
+        // Step 1: Store frequency of each character
         HashMap<Character, Integer> map = new HashMap<>();
-        for(char ch : s.toCharArray()){
-            map.put(ch , map.getOrDefault(ch,0)+1);
+        
+        for (char ch : s.toCharArray()) {
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
         }
 
-        // Step 2: Create Max Heap based on frequency
-        PriorityQueue<Character> pq = new PriorityQueue<>(
-            (a, b) -> map.get(b) - map.get(a)
-        );
-        // add all char to heap
-        pq.addAll(map.keySet());
-        
+        // sort characters 
+        List<Character> list = new ArrayList<>(map.keySet());
+        list.sort((a,b)->map.get(b)-map.get(a));
 
-        // Step 3: Build result string
+        // build result
         StringBuilder sb = new StringBuilder();
-
-        while (!pq.isEmpty()) {
-            char ch = pq.poll();
+        for(char ch: list){
             int freq = map.get(ch);
-
-            for (int i = 0; i < freq; i++) {
+            while(freq-->0){
                 sb.append(ch);
             }
         }
-
         return sb.toString();
-
     }
 }
