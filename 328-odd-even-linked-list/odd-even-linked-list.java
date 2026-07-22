@@ -14,40 +14,20 @@ class Solution {
         if (head == null || head.next == null)
             return head;
 
-        ListNode temp = head;
-
-        int n = 0;
-        while (temp != null) {
-            n++;
-            temp = temp.next;
-        }
-
-        ListNode move = head.next.next;
         ListNode odd = head;
         ListNode even = head.next;
         ListNode evenHead = even;
 
-        for (int i=2; i<n && move!=null; i++) {
+        while (even != null && even.next != null) {
 
-            ListNode next = move.next;   // Save next node
-            move.next = null;            // Disconnect current node
+            odd.next = even.next;
+            odd = odd.next;
 
-            // Case : even
-            if (i % 2 == 0) {
-                odd.next = move;
-                odd = odd.next;
-            } 
-            // case : odd
-            else {
-                even.next = move;
-                even = even.next;
-            }
-
-            move = next;
+            even.next = odd.next;
+            even = even.next;
         }
 
         odd.next = evenHead;
-        even.next = null;
 
         return head;
     }
