@@ -14,19 +14,13 @@ class Solution {
         ListNode slow = head;
         ListNode fast = head;
 
-        // to keep the slow one node before the middle one : fast.next!=null && fast.next.next!=null
-        while(fast.next!=null && fast.next.next!=null){   
+        // to keep the slow, one node before the middle one : fast.next!=null && fast.next.next!=null
+        while(fast!=null && fast.next!=null){   
             slow = slow.next;
             fast = fast.next.next;
         }
 
-
-        if(fast.next==null){
-            return slow;
-        }
-        else{
-            return slow.next;
-        }
+        return slow;
 
     }
 }
