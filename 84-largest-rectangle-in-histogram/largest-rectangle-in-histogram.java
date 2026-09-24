@@ -1,7 +1,6 @@
 class Solution {
     public int largestRectangleArea(int[] heights) {
         int n= heights.length;
-        if(n==1) return heights[0];
         Stack<Integer> ps = new Stack<>();    //enter index
         int[] pse = new int[n];
         pse[0]=-1;
